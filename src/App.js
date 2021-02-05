@@ -10,7 +10,7 @@ function App() {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
-  const initialUrl = 'https://pokeapi.co/api/v2/pokemon'
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=151'
 
   
 
@@ -37,22 +37,24 @@ function App() {
 
   return (
     <div className="App">
-      {loading 
-        ? <Loading/> 
-        : pokemonData.map(pokemon => 
-          <Pokemon
-            key={pokemon.id}
-            id={pokemon.id}
-            weight={pokemon.weight} 
-            height={pokemon.height}
-            name ={pokemon.name}
-            abilities={pokemon.abilities} 
-            stats ={pokemon.stats}
-            types ={pokemon.types}
-            sprites={pokemon.sprites}
-          />  
-        )
-      }
+      <div className="poke-container">
+        {loading 
+          ? <Loading/> 
+          : pokemonData.map(pokemon => 
+            <Pokemon
+              key={pokemon.id}
+              id={pokemon.id}
+              weight={pokemon.weight} 
+              height={pokemon.height}
+              name ={pokemon.name}
+              abilities={pokemon.abilities} 
+              stats ={pokemon.stats}
+              types ={pokemon.types}
+              sprites={pokemon.sprites}
+            />  
+          )
+        }
+      </div>
       
     </div>
   );
