@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const Pokemones = ({id, weight, height, name, abilities, stats, types, sprites}) => {
+const Pokemones = ({id, name, types, sprites}) => {
 
   const [toype, setToype] = useState('');
 
@@ -14,7 +14,6 @@ const Pokemones = ({id, weight, height, name, abilities, stats, types, sprites})
   }, [])
   
   const pokemonTypes = () => {
-    // let menu = 'type';
     const typesPokemon = types.map((type, index) => {
       let menu;
       switch (type.type.name) {
@@ -79,8 +78,6 @@ const Pokemones = ({id, weight, height, name, abilities, stats, types, sprites})
     })
     setToype(typesPokemon)
   }
-
-  // console.info(toype)
 
   
   return (
