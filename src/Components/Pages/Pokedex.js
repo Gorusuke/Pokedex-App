@@ -3,6 +3,7 @@ import Axios from 'axios';
 // import './App.css';
 import Pokemones from './Pokemones';
 import Loading from './Loading';
+import pokeball from './pokebola.svg'
 
 
 const Pokedex = () => {
@@ -11,7 +12,7 @@ const Pokedex = () => {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
-  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20'
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=151'
 
 
   useEffect(() => {
@@ -34,26 +35,36 @@ const Pokedex = () => {
   }
 
   return (
-  <div className="App">
-    <div className="poke-container">
+    <>
       {loading 
         ? <Loading/> 
-        : pokemonData.map(pokemon => 
-          <Pokemones
-            key={pokemon.id}
-            id={pokemon.id}
-            weight={pokemon.weight} 
-            height={pokemon.height}
-            name ={pokemon.name}
-            abilities={pokemon.abilities} 
-            stats ={pokemon.stats}
-            types ={pokemon.types}
-            sprites={pokemon.sprites}
-          />  
-        )
+        : <div>
+            <div>
+              <div className="poke-ball-container">
+                <img className="poke-ball" src={pokeball} alt='poke-ball'/>
+              </div>
+              <h1 className="title">Pokédex</h1>
+            </div>
+            <div className="App">
+              <div className="poke-container">
+                {pokemonData.map(pokemon => 
+                  <Pokemones
+                    key={pokemon.id}
+                    id={pokemon.id}
+                    name ={pokemon.name}
+                    types ={pokemon.types}
+                    sprites={pokemon.sprites}
+                    // weight={pokemon.weight} 
+                    // height={pokemon.height}
+                    // abilities={pokemon.abilities} 
+                    // stats ={pokemon.stats}
+                  />  
+                )}
+              </div>      
+            </div>
+          </div>
       }
-    </div>      
-  </div>
+    </>
   )
 }
 
