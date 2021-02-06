@@ -10,7 +10,7 @@ function App() {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
-  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=151'
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20'
 
   
 
@@ -32,8 +32,6 @@ function App() {
     }))
     setPokemonData(pokemones)
   }
-
-  console.info(pokemonData)
 
   return (
     <div className="App">

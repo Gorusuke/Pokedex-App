@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
 *{
     padding: 0;
     margin: 0;
@@ -42,9 +44,20 @@
 }
 
 .poke-card{
-
+    font-family: 'Sriracha', cursive;
     text-align: center;
     /* margin: 0 auto; */
+}
+
+.poke-card > p {
+    text-align: left;
+    margin-left: 10px;
+}
+
+.poke-card > h3 {
+    text-align: left;
+    margin-left: 10px;
+    font-size: 1.5rem;
 }
 
 .poke-img-container{
@@ -58,13 +71,17 @@
 
 .poke-type{
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    margin-left: 10px;
+
 }
 
 .type{
-    margin: 0 5px;
+    margin-right: 10px;
     background-color: green;
-    padding: 5px 25px;
-    border-radius: 8px;
+    padding: 0px 20px;
+    border-radius: 5px;
+    font-size: 12px;
     text-transform: capitalize;
+    text-align: left;
 }
