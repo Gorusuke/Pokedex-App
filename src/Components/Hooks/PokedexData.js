@@ -8,7 +8,7 @@ const PokedexData = () => {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
-  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=151'
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=30'
 
 
   useEffect(() => {
@@ -33,4 +33,4 @@ const PokedexData = () => {
   return {pokemonData, nextUrl, prevUrl, loading}
 }
 
-export default PokedexData
+export default PokedexData;
