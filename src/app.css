@@ -90,9 +90,8 @@
 
 .poke-type{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     margin-left: 10px;
-
 }
 
 .type{
@@ -240,6 +239,7 @@
     padding: 1rem 1.5rem;
     margin-bottom: 1.5rem;
     font-size: 1.25rem;
+    height: 242px;
 }
 
 .poke-info{
@@ -268,8 +268,7 @@
 }
 
 .poke-info-container2{
-    height: 207px;
-    width: 414.2px;
+    height: 242px;
     background: #4d4d4d;
     border-radius: 10px;
     margin-bottom: 1.5rem;
@@ -299,12 +298,15 @@
 
 .poke-info-back-container{
     margin: 0 1.75rem;
-    color: white
+    color: white;
+    padding-bottom: 1.5rem;
 }
 
 .poke-info-back-title{
     font-size: 1.4rem;
     font-weight: 300;
+    margin-top: -15px;
+    margin-bottom: 5px;
 
 }
 
@@ -315,7 +317,7 @@
 
 .poke-type2{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     /* margin-left: 10px; */
 }
 
@@ -324,4 +326,12 @@
     padding: 0px 20px;
     border-radius: 5px;
     text-transform: capitalize;
+}
+
+.poke-gender > i{
+    font-size: 1.75rem;
+}
+
+.poke-gender > i:last-child{
+    margin-left: 12px;
 }
