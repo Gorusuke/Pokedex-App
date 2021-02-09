@@ -340,6 +340,7 @@
     padding: 0px 20px;
     border-radius: 5px;
     text-transform: capitalize;
+    cursor: pointer;
 }
 
 .poke-gender > i{
@@ -348,6 +349,10 @@
 
 .poke-gender > i:last-child{
     margin-left: 12px;
+}
+
+.poke-stats-container{
+    display: flex;
 }
 
 .poke-stats{
@@ -410,4 +415,23 @@
     line-height: 1.2;
     vertical-align: middle;
     display: inline-block;
+}
+
+.weakness-container{
+    width: 50%;
+    margin-left: 1rem;
+    font-family: 'Sriracha', cursive;
+}
+
+.weakness-container > h3{
+    margin-left: .5rem;
+}
+
+.poke-type3{
+    display: inline-block;
+}
+
+.type3{
+    margin: .5rem .5rem;
+
 }

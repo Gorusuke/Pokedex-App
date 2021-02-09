@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, {useState} from 'react';
 import PokedexData from '../Hooks/PokedexData';
 import Loading from './Loading';
+import PokeDamage from './PokeDamage';
 import PokeTypes from './PokeTypes';
 
 
@@ -14,6 +15,7 @@ const Pokemon = ({match}) => {
   const [dataInfo, setDataInfo] = useState([]);
   const [dataUrls, setDataUrls] = useState([]);
   const [genderData, setGenderData] = useState([]);
+  // const [evolutionData, setEvolutionData] = useState([]);
 
   
 
@@ -43,7 +45,10 @@ const Pokemon = ({match}) => {
           
           const text = (url) => {
             Axios.get(url)
-              .then(result => setPokeData(result.data.flavor_text_entries[1].flavor_text))
+              .then(result => {
+                setPokeData(result.data.flavor_text_entries[1].flavor_text)
+                // setEvolutionData(result.data.evolution_chain.url)
+              })
             
             return <p className="poke-text">{pokeData.toString().replace('', ' ')}</p>;
           }
@@ -122,7 +127,7 @@ const Pokemon = ({match}) => {
               let barra = 15;
               const number = Math.round((stat.base_stat / barra))
               const avance = number * 24;
-              
+
               return (
                 <li key={i}>
                   <ul className="gauge">
@@ -147,6 +152,17 @@ const Pokemon = ({match}) => {
               ) 
             })
           }
+
+
+
+          // const evolution = (url) => {
+          //   Axios.get(url)
+          //     .then(result => console.info(result.data))
+            
+          //   // Axios.get(evolutionData)
+          //   //   .then(response => console.info(response))
+          //   // return <p className="poke-text">{pokeData.toString().replace('', ' ')}</p>;
+          // }
           
           if(pokemon.name === match.params.name){
             return (
@@ -190,11 +206,26 @@ const Pokemon = ({match}) => {
                         <PokeTypes types={types} classType='type2'/>
                       </div>    
                     </div> 
-                  </div>                 
-                  <div className="poke-stats">
-                    <h3>Stats</h3>
-                    <div className="stats-container">{pokeStats()}</div>
-                  </div>            
+                  </div>
+                  
+                  <div className="poke-stats-container">
+                    <div className="poke-stats">
+                      <h3>Stats</h3>
+                      <div className="stats-container">{pokeStats()}</div>
+                    </div> 
+                    <div className="weakness-container">
+                      {/* {evolution(evolutionData)} */}
+                      <h3>Weakness</h3>
+                      {types.map((type, i) => 
+                        <PokeDamage
+                          key={i}
+                          url={type.type.url}
+                          classType='type3'
+                        />
+                      )}
+                    </div>
+                  </div>
+
                 </div>
               </div>
             )
