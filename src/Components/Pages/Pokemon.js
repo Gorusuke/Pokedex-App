@@ -116,6 +116,37 @@ const Pokemon = ({match}) => {
               </div>
             ))
           }  
+
+          const pokeStats = () => {
+            return stats.map((stat, i) => {
+              let barra = 15;
+              const number = Math.round((stat.base_stat / barra))
+              const avance = number * 24;
+              
+              return (
+                <li key={i}>
+                  <ul className="gauge">
+                    <li className="percentage" style={{paddingTop: `${avance}%`}}></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <span>{stat.stat.name}</span>
+                </li>
+              ) 
+            })
+          }
           
           if(pokemon.name === match.params.name){
             return (
@@ -124,42 +155,47 @@ const Pokemon = ({match}) => {
                   <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2> 
                   <p>N.º {(id/100).toString().replace('.','')}</p>
                 </div>
-                <div className="App app-container">
-                  <div className="poke-img-container">
-                    <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
-                  </div>
-                  <div className="info-container">
-                    {text(species.url)}
-                    {pokeInfoAbility 
-                      ? <div className="poke-info-container2">
-                          <div className="poke-info-back">
-                            <p className="poke-back">Ability Information</p>
-                            <p className="poke-back-2" onClick={() => closeInfoAbility()}>X <span>Cerrar</span></p>
+                <div className="App">
+                  <div className="app-container">
+                    <div className="poke-img-container2">
+                      <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
+                    </div>
+                    <div className="info-container">
+                      {text(species.url)}
+                      {pokeInfoAbility 
+                        ? <div className="poke-info-container2">
+                            <div className="poke-info-back">
+                              <p className="poke-back">Ability Information</p>
+                              <p className="poke-back-2" onClick={() => closeInfoAbility()}>X <span>Cerrar</span></p>
+                            </div>
+                            <div className="poke-info-back-container">
+                              {pokeAbility()}
+                              {abilitiyUrl(abilities.filter(ability => ability.ability.name === dataInfo))}
+                            </div>
+                          </div>  
+                        : <div className="poke-info-container">
+                            <div className="poke-info">
+                              <p className="poke-item">Height <span>{(height/10).toString().replace('.',',')} m</span></p>
+                              <p className="poke-item">Weight <span>{(weight/10).toString().replace('.',',')} kg</span></p>
+                              {gender(species.url)}
+                            </div>
+                            <div className="poke-info1">
+                              {categories(species.url)}
+                              {pokeAbilities().length > 1 ? <p className="poke-item">Abilities</p> : <p className="poke-item">Ability</p>}{pokeAbilities()} 
+                            </div>
                           </div>
-                          <div className="poke-info-back-container">
-                            {pokeAbility()}
-                            {abilitiyUrl(abilities.filter(ability => ability.ability.name === dataInfo))}
-                          </div>
-                        </div>  
-                      : <div className="poke-info-container">
-                          <div className="poke-info">
-                            <p className="poke-item">Height <span>{(height/10).toString().replace('.',',')} m</span></p>
-                            <p className="poke-item">Weight <span>{(weight/10).toString().replace('.',',')} kg</span></p>
-                            {gender(species.url)}
-                          </div>
-                          <div className="poke-info1">
-                            {categories(species.url)}
-                            {pokeAbilities().length > 1 ? <p className="poke-item">Abilities</p> : <p className="poke-item">Ability</p>}{pokeAbilities()} 
-                          </div>
-                        </div>
-                    }
-                    <p className="type-text">Type</p>
-                    <div className="poke-type2">
-                      <PokeTypes types={types} classType='type2'/>
-                    </div>  
-    
-                  </div>
-                </div>            
+                      }
+                      <p className="type-text">Type</p>
+                      <div className="poke-type2">
+                        <PokeTypes types={types} classType='type2'/>
+                      </div>    
+                    </div> 
+                  </div>                 
+                  <div className="poke-stats">
+                    <h3>Stats</h3>
+                    <div className="stats-container">{pokeStats()}</div>
+                  </div>            
+                </div>
               </div>
             )
           } 
