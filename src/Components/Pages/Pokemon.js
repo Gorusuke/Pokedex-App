@@ -144,8 +144,6 @@ const Pokemon = ({match}) => {
                     <li></li>
                     <li></li>
                     <li></li>
-                    <li></li>
-                    <li></li>
                   </ul>
                   <span>{stat.stat.name}</span>
                 </li>
