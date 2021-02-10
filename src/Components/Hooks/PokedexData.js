@@ -8,7 +8,7 @@ const PokedexData = () => {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
-  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=181'
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=300'
 
 
   useEffect(() => {
@@ -24,12 +24,16 @@ const PokedexData = () => {
 
   const loadingPokemons = async (data) => {
     let pokemones = await Promise.all(data.map(async pokemon => {
-      let getAllPokemon = await Axios.get(pokemon.url)
-      return getAllPokemon.data;
+      try {
+        let getAllPokemon = await Axios.get(pokemon.url)
+        return getAllPokemon.data;
+      } catch (error) {
+        return error;
+      }
+      
     }))
     setPokemonData(pokemones)
   }
-
   return {pokemonData, nextUrl, prevUrl, loading}
 }
 

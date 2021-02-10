@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import PokedexData from '../Hooks/PokedexData';
 import Loading from './Loading';
 import PokeDamage from './PokeDamage';
+import PokeEvolution from './PokeEvolution';
 import PokeTypes from './PokeTypes';
 
 
@@ -15,9 +16,6 @@ const Pokemon = ({match}) => {
   const [dataInfo, setDataInfo] = useState([]);
   const [dataUrls, setDataUrls] = useState([]);
   const [genderData, setGenderData] = useState([]);
-  // const [evolutionData, setEvolutionData] = useState([]);
-
-  
 
   const infoAbility = (data) => {
     setPokeInfoAbility(true);
@@ -45,10 +43,7 @@ const Pokemon = ({match}) => {
           
           const text = (url) => {
             Axios.get(url)
-              .then(result => {
-                setPokeData(result.data.flavor_text_entries[1].flavor_text)
-                // setEvolutionData(result.data.evolution_chain.url)
-              })
+              .then(result =>  setPokeData(result.data.flavor_text_entries[1].flavor_text))
             
             return <p className="poke-text">{pokeData.toString().replace('', ' ')}</p>;
           }
@@ -150,24 +145,13 @@ const Pokemon = ({match}) => {
               ) 
             })
           }
-
-
-
-          // const evolution = (url) => {
-          //   Axios.get(url)
-          //     .then(result => console.info(result.data))
-            
-          //   // Axios.get(evolutionData)
-          //   //   .then(response => console.info(response))
-          //   // return <p className="poke-text">{pokeData.toString().replace('', ' ')}</p>;
-          // }
           
           if(pokemon.name === match.params.name){
             return (
               <div key={id}>
                 <div className="title-container">
                   <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2> 
-                  <p>N.º {(id/100).toString().replace('.','')}</p>
+                  <p>N.º {(id/100).toFixed(2).toString().replace('.','')}</p>
                 </div>
                 <div className="App">
                   <div className="app-container">
@@ -212,16 +196,23 @@ const Pokemon = ({match}) => {
                       <div className="stats-container">{pokeStats()}</div>
                     </div> 
                     <div className="weakness-container">
-                      {/* {evolution(evolutionData)} */}
                       <h3>Weakness</h3>
                       {types.map((type, i) => 
                         <PokeDamage
-                          key={i}
-                          url={type.type.url}
-                          classType='type3'
+                        key={i}
+                        url={type.type.url}
+                        classType='type3'
                         />
-                      )}
+                        )}
                     </div>
+                  </div>
+
+                  <div>  
+                    <PokeEvolution
+                      url={species.url}
+                      name={species.name}
+                      match={match}
+                    />
                   </div>
 
                 </div>

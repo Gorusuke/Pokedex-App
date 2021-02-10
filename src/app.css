@@ -216,12 +216,6 @@
     color: #505050;
 }
 
-/* .pokemon-container{
-    border: 1px solid;
-    width: 70%;
-    margin: 0 auto;
-} */
-
 .app-container{
     display: flex;
     margin-bottom: 2rem;
@@ -433,5 +427,97 @@
 
 .type3{
     margin: .5rem .5rem;
+}
 
+.evolution-pokemon-container{
+    margin-top: 4rem;
+    background-image: url('https://us.123rf.com/450wm/rodinanton/rodinanton1901/rodinanton190100003/126532714-stock-vector-dark-horizontal-background-with-diagonal-stripes-vector-background-with-lighting-.jpg?ver=6');
+    background-size: cover;
+    position: relative;
+    border-radius: 15px;
+}
+
+.evolution-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+}
+
+.pokemon-title{
+    color: #fff;
+    font-family: 'Sriracha', cursive;
+    margin-left: 2rem;
+    margin-bottom: -1rem;
+    padding-top: 1rem;
+}
+
+.pokemon-card{
+    font-family: 'Sriracha', cursive;
+    text-align: center;
+    color: white;
+    font-weight: normal;
+}
+
+.pokemon-img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c3c3c3;
+    border-radius: 10px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 8px solid #fff;
+}
+
+.pokemon-img{
+    width: 90%;
+}
+
+.center{
+    color: white;
+    font-size: 80px;
+    position: absolute;
+    bottom: 40%;
+    left: 48%;
+}
+
+.right{
+    color: white;
+    font-size: 80px;
+    position: absolute;
+    bottom: 40%;
+    left: 30%;
+}
+
+.left{
+    color: white;
+    font-size: 80px;
+    position: absolute;
+    bottom: 40%;
+    left: 63%;
+}
+
+.pokemon-type{
+    display: flex;
+    justify-content: center;
+}
+
+.type{
+    text-align: center;
+}
+
+.name-container{
+    display: flex;
+    justify-content: center;
+}
+
+.name-container > p {
+    font-size: 1.25rem;
+}
+
+.name-container .id{
+    color: #bebebe;
+    margin-left: 10px;
 }
