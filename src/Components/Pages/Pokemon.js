@@ -150,11 +150,19 @@ const Pokemon = ({match}) => {
           if(pokemon.name === match.params.name){
             return (
               <div key={id} className="pokemon-container">
-                <div className="title-container">
-                  <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2> 
-                  <p>N.º {(id/100).toFixed(2).toString().replace('.','')}</p>
+                <div className="arrow-containers">
+                <div className="before">
+                    <p>Nº 0003</p>
+                  </div>
+                  <div className="next">
+                    <p>Nº 0005</p>
+                  </div>
                 </div>
-                <div className="App">
+                <div className="App App2">
+                  <div className="title-container">
+                    <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2> 
+                    <p>N.º {(id/100).toFixed(2).toString().replace('.','')}</p>
+                  </div>
                   <div className="app-container">
                     <div className="poke-img-container2">
                       <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
