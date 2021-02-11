@@ -71,7 +71,7 @@ function TypesPokemon(array, classType, pokeType, number) {
           break;
       }
       return <div className={pokeType} key={index}>
-        <p className={`type2 ${classType} ${menu}`}>{name}</p>
+        <p className={`${classType} ${menu}`}>{name}</p>
       </div>
     })
   }

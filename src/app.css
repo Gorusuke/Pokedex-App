@@ -51,8 +51,9 @@
 .App{
     width: 70%;
     margin: 0 auto;
-    border: 1px solid;
     padding: 2rem;
+    background-color: #fff;
+    /* border: 1px solid; */
 }
 
 .poke-container{
@@ -66,7 +67,22 @@
 .poke-card{
     font-family: 'Sriracha', cursive;
     text-align: center;
-    /* margin: 0 auto; */
+}
+
+.poke-card:hover{
+    animation: anim .2s backwards;
+}
+
+@keyframes anim{
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-2px);
+    }
+    100%{
+        ttransform: translateY(0px);
+    }
 }
 
 .poke-card > p {
@@ -197,8 +213,14 @@
     color: #fff;
 }
 
+.pokemon-container{
+    background-image: url('https://st2.depositphotos.com/4202565/8164/v/600/depositphotos_81645364-stock-illustration-slanting-black-and-white-lines.jpg');
+    background-size: contain;
+    padding-bottom: 4rem;
+}
+
 .title-container{
-    margin: 2rem 0 4rem 0;
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
     font-family: 'Sriracha', cursive;
@@ -388,8 +410,21 @@
     padding-top: 0%;
     border: none;
     z-index: 1;
-    /* top: 100%; */
+    animation: animacion 1s ease-in;
+    /* top: 100%;  */
     /* height: 120%; */
+}
+
+@keyframes animacion{
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-15px); 
+    }
+    100%{
+        transform: translateY(0px);
+    }
 }
 
 .gauge li{
@@ -520,4 +555,30 @@
 .name-container .id{
     color: #bebebe;
     margin-left: 10px;
+}
+
+.poke-button-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.poke-button{
+    color: #373737;
+    padding: .5rem .8rem;
+    border-radius: 10px;
+    background-color: #fff;
+    border: none;
+    margin-top: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Sriracha', cursive;
+    border: 2px solid #373737;
+    transition: background-color .3s ease;
+}
+
+.poke-button:hover{
+    background-color: #373737;
+    color: #fff;
+
+    border: 2px solid #373737;
 }

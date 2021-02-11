@@ -23,10 +23,10 @@ const Pokedex = () => {
             </div>
             <div className="App">
               <div className="poke-container">
-                {pokemonData.map((pokemon, i) => 
+                {pokemonData.map(pokemon => 
                   <Pokemones
                     key={pokemon.id}
-                    id={i}
+                    id={pokemon.id}
                     name ={pokemon.name}
                     types ={pokemon.types}
                     sprites={pokemon.sprites}

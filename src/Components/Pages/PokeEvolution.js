@@ -49,10 +49,10 @@ const PokeEvolution = ({url}) => {
               : <h2 className="pokemon-title">Evolutions</h2>
             }
             <div className="evolution-container">
-              {pokemonData.map((pokemon, i) => 
+              {pokemonData.map(pokemon => 
                 <Pokemones
                     key={pokemon.id}
-                    id={i}
+                    id={pokemon.id}
                     name ={pokemon.name}
                     types ={pokemon.types}
                     sprites={pokemon.sprites}

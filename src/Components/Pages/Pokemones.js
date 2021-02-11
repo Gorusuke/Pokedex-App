@@ -33,7 +33,7 @@ const Pokemones = ({id, name, types, sprites, evolutions, help}) => {
                 </div>
                 <div className="pokemon-type">
                   <PokeTypes 
-                    types={types} classType='type'
+                    types={types} classType='type type2'
                   />
                 </div>
               </div> 

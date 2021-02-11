@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import PokedexData from '../Hooks/PokedexData';
 import Loading from './Loading';
 import PokeDamage from './PokeDamage';
@@ -148,7 +149,7 @@ const Pokemon = ({match}) => {
           
           if(pokemon.name === match.params.name){
             return (
-              <div key={id}>
+              <div key={id} className="pokemon-container">
                 <div className="title-container">
                   <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2> 
                   <p>N.º {(id/100).toFixed(2).toString().replace('.','')}</p>
@@ -201,7 +202,7 @@ const Pokemon = ({match}) => {
                         <PokeDamage
                         key={i}
                         url={type.type.url}
-                        classType='type3'
+                        classType='type3 type2'
                         />
                         )}
                     </div>
@@ -214,7 +215,11 @@ const Pokemon = ({match}) => {
                       match={match}
                     />
                   </div>
-
+                  <div  className="poke-button-container">
+                    <Link to='/' className="poke-button">
+                      Go back to Pokédex
+                    </Link>
+                  </div>
                 </div>
               </div>
             )
