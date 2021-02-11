@@ -1,6 +1,6 @@
-import Axios from 'axios';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 import PokedexData from '../Hooks/PokedexData';
 import Loading from './Loading';
 import PokeDamage from './PokeDamage';
@@ -10,13 +10,16 @@ import PokeTypes from './PokeTypes';
 
 const Pokemon = ({match}) => {
 
-  const {loading, pokemonData} = PokedexData();
+  const {loading, pokemonData, initialUrl} = PokedexData();
   const [pokeData, setPokeData] = useState([]);
   const [pokeCategory, setPokeCategory] = useState([]);
   const [pokeInfoAbility, setPokeInfoAbility] = useState(false);
   const [dataInfo, setDataInfo] = useState([]);
   const [dataUrls, setDataUrls] = useState([]);
   const [genderData, setGenderData] = useState([]);
+  const [pagination, setPagination] = useState([]);
+  const [contador, setContador] = useState(0)
+  const [nextPokemon, setNextPokemon] = useState(false)
 
   const infoAbility = (data) => {
     setPokeInfoAbility(true);
@@ -25,6 +28,25 @@ const Pokemon = ({match}) => {
 
   const closeInfoAbility = () => {
     setPokeInfoAbility(false);
+  }
+
+
+  useEffect(() => {
+    const API = async () => {
+      const response = await Axios.get(initialUrl)
+      setPagination(response.data.results)
+    }
+    API();
+    // eslint-disable-next-line
+  }, [])
+
+  const nextPagination = (data) => {
+    setContador(data + 1)
+    // setNextPokemon(true)
+  }
+
+  const beforePagination = (data) => {
+    setContador(data - 1)
   }
 
   return (
@@ -146,16 +168,25 @@ const Pokemon = ({match}) => {
               ) 
             })
           }
-          
+
           if(pokemon.name === match.params.name){
             return (
               <div key={id} className="pokemon-container">
                 <div className="arrow-containers">
-                <div className="before">
-                    <p>Nº 0003</p>
+                  <div className="before" onClick={() => beforePagination(id)}>
+                    <div className="arrow-directions">
+                      <i className="fas fa-arrow-circle-left arrow"></i>
+                      <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
+                      {contador === 0 ? <p className="pokemon">{pagination[(id-2)].name}</p> : <p className="pokemon">{pagination[(contador-2)].name}</p>}
+                      {/* {nextPokemon ? <NextPokemon/> : null} */}
+                    </div>   
                   </div>
-                  <div className="next">
-                    <p>Nº 0005</p>
+                  <div className="next" onClick={() => nextPagination(id)}>
+                    <div className="arrow-directions">
+                      <p className="number">N.º {((id+1)/100).toFixed(2).toString().replace('.','')}</p>
+                      {contador === 0 ? <p className="pokemon">{pagination[id].name}</p> : <p className="pokemon">{pagination[contador].name}</p>}
+                      <i className="fas fa-arrow-circle-right arrow"></i>
+                    </div> 
                   </div>
                 </div>
                 <div className="App App2">
@@ -219,8 +250,9 @@ const Pokemon = ({match}) => {
                   <div>  
                     <PokeEvolution
                       url={species.url}
-                      name={species.name}
-                      match={match}
+                      // pagination={pagination[(contador)].name}
+                      // match={match}
+                      // name={species.name}
                     />
                   </div>
                   <div  className="poke-button-container">

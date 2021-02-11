@@ -221,6 +221,8 @@
     justify-content: center;
     margin-top: 3rem;
     margin-bottom: -9rem;
+    font-family: 'Sriracha', cursive;
+    font-size: 1.5rem;
 }
 
 .before{
@@ -229,6 +231,30 @@
     width: 50%;
     height: 200px;
     margin-right: 5px;
+    cursor: pointer;
+}
+
+.arrow-directions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: .9rem;
+}
+
+.pokemon{
+    text-transform: capitalize;
+    margin: 0 .3rem;
+    color: #373737;
+}
+
+.number{
+    margin: 0 .3rem;
+    color: #fff;
+}
+
+.arrow{
+    color: white;
+    margin: 0 .3rem;
 }
 
 .next{
@@ -237,6 +263,7 @@
     width: 50%;
     height: 200px;
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .title-container{

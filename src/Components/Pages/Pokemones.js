@@ -10,9 +10,9 @@ const Pokemones = ({id, name, types, sprites, evolutions, help}) => {
   return ( 
     <>
       {help
-        ? evolutions.map((evolution, i) => (
+        ? evolutions.map(evolution => (
           name === evolution
-            ? <div key={i} className="pokemon-card">
+            ? <div key={id} className="pokemon-card">
                 <div className="pokemon-img-container">
                   <Link to={`/${name}`}>
                     <img className="pokemon-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
@@ -39,7 +39,7 @@ const Pokemones = ({id, name, types, sprites, evolutions, help}) => {
               </div> 
             : null  
         ))
-        : <div className="poke-card">
+        : <div key={id} className="poke-card">
             <div className="poke-img-container">
               <Link to={`/${name}`}>
                 <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
