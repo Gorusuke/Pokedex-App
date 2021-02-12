@@ -31,8 +31,9 @@
 }
 
 .poke-ball-container{
-    margin: 10px auto -25px auto;
+    margin: 0px auto -25px auto;
     width: 40px;
+    padding-top: 10px;
 }
 
 .poke-ball{
@@ -232,6 +233,10 @@
     height: 200px;
     margin-right: 5px;
     cursor: pointer;
+}
+
+.page{
+    text-decoration: none;
 }
 
 .arrow-directions{

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function TypesPokemon(array, classType, pokeType, number) {
 
@@ -71,7 +72,9 @@ function TypesPokemon(array, classType, pokeType, number) {
           break;
       }
       return <div className={pokeType} key={index}>
-        <p className={`${classType} ${menu}`}>{name}</p>
+        <Link to={`/type/${menu}`} className="page">
+          <p className={`${classType} ${menu}`}>{name}</p>
+        </Link>
       </div>
     })
   }

@@ -18,8 +18,8 @@ const Pokemon = ({match}) => {
   const [dataUrls, setDataUrls] = useState([]);
   const [genderData, setGenderData] = useState([]);
   const [pagination, setPagination] = useState([]);
-  const [contador, setContador] = useState(0)
-  const [nextPokemon, setNextPokemon] = useState(false)
+  const [contador, setContador] = useState(0);
+  // const [nextPokemon, setNextPokemon] = useState([])
 
   const infoAbility = (data) => {
     setPokeInfoAbility(true);
@@ -30,7 +30,6 @@ const Pokemon = ({match}) => {
     setPokeInfoAbility(false);
   }
 
-
   useEffect(() => {
     const API = async () => {
       const response = await Axios.get(initialUrl)
@@ -40,13 +39,17 @@ const Pokemon = ({match}) => {
     // eslint-disable-next-line
   }, [])
 
-  const nextPagination = (data) => {
-    setContador(data + 1)
-    // setNextPokemon(true)
+  const beforePagination = (data) => {
+    // let prueba;
+    // if(pagination === 0){
+    //   prueba = 898;
+    //   setPagination(prueba)
+    // }
+    setContador(data - 1)
   }
 
-  const beforePagination = (data) => {
-    setContador(data - 1)
+  const nextPagination = (data) => {
+    setContador(data + 1)
   }
 
   return (
@@ -66,7 +69,13 @@ const Pokemon = ({match}) => {
           
           const text = (url) => {
             Axios.get(url)
-              .then(result =>  setPokeData(result.data.flavor_text_entries[1].flavor_text))
+              .then(result => {
+                if(result.data.flavor_text_entries[1].language.name === 'en'){
+                  setPokeData(result.data.flavor_text_entries[1].flavor_text)
+                } else {
+                  setPokeData(result.data.flavor_text_entries[3].flavor_text)
+                }
+              })
             
             return <p className="poke-text">{pokeData.toString().replace('', ' ')}</p>;
           }
@@ -174,19 +183,23 @@ const Pokemon = ({match}) => {
               <div key={id} className="pokemon-container">
                 <div className="arrow-containers">
                   <div className="before" onClick={() => beforePagination(id)}>
-                    <div className="arrow-directions">
-                      <i className="fas fa-arrow-circle-left arrow"></i>
-                      <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
-                      {contador === 0 ? <p className="pokemon">{pagination[(id-2)].name}</p> : <p className="pokemon">{pagination[(contador-2)].name}</p>}
-                      {/* {nextPokemon ? <NextPokemon/> : null} */}
-                    </div>   
+                    <Link to={pagination[(id-2)].name} className="page">
+                      <div className="arrow-directions">
+                        <i className="fas fa-arrow-circle-left arrow"></i>
+                        <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
+                        {contador === 0 ? <p className="pokemon">{pagination[(id-2)].name}</p> : <p className="pokemon">{pagination[(contador-2)].name}</p>}
+                        {/* {nextPokemon ? <NextPokemon/> : null} */}
+                      </div>   
+                    </Link>
                   </div>
                   <div className="next" onClick={() => nextPagination(id)}>
-                    <div className="arrow-directions">
-                      <p className="number">N.º {((id+1)/100).toFixed(2).toString().replace('.','')}</p>
-                      {contador === 0 ? <p className="pokemon">{pagination[id].name}</p> : <p className="pokemon">{pagination[contador].name}</p>}
-                      <i className="fas fa-arrow-circle-right arrow"></i>
-                    </div> 
+                    <Link to={pagination[id].name} className="page">
+                      <div className="arrow-directions">
+                        <p className="number">N.º {((id+1)/100).toFixed(2).toString().replace('.','')}</p>
+                        {contador === 0 ? <p className="pokemon">{pagination[id].name}</p> : <p className="pokemon">{pagination[contador].name}</p>}
+                        <i className="fas fa-arrow-circle-right arrow"></i>
+                      </div>
+                    </Link>         
                   </div>
                 </div>
                 <div className="App App2">

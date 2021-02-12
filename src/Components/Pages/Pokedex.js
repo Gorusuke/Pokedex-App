@@ -15,24 +15,26 @@ const Pokedex = () => {
       {loading 
         ? <Loading/> 
         : <>
-            <div>
-              <div className="poke-ball-container">
-                <img className="poke-ball" src={pokeball} alt='poke-ball'/>
+            <div className="pokemon-container">
+              <div>
+                <div className="poke-ball-container">
+                  <img className="poke-ball" src={pokeball} alt='poke-ball'/>
+                </div>
+                <h1 className="title">Pokédex</h1>
               </div>
-              <h1 className="title">Pokédex</h1>
-            </div>
-            <div className="App">
-              <div className="poke-container">
-                {pokemonData.map(pokemon => 
-                  <Pokemones
-                    key={pokemon.id}
-                    id={pokemon.id}
-                    name ={pokemon.name}
-                    types ={pokemon.types}
-                    sprites={pokemon.sprites}
-                  />         
-                )}
-              </div>      
+              <div className="App">
+                <div className="poke-container">
+                  {pokemonData.map(pokemon => 
+                    <Pokemones
+                      key={pokemon.id}
+                      id={pokemon.id}
+                      name ={pokemon.name}
+                      types ={pokemon.types}
+                      sprites={pokemon.sprites}
+                    />         
+                  )}
+                </div>      
+              </div>
             </div>
           </>
       }
