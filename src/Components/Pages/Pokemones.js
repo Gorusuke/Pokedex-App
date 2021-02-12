@@ -5,7 +5,9 @@ import PokeTypes from './PokeTypes';
 
 
 
-const Pokemones = ({id, name, types, sprites, evolutions, help}) => {
+const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, match}) => {
+
+  // console.info(types)
 
   return ( 
     <>
@@ -39,20 +41,38 @@ const Pokemones = ({id, name, types, sprites, evolutions, help}) => {
               </div> 
             : null  
         ))
-        : <div key={id} className="poke-card">
-            <div className="poke-img-container">
-              <Link to={`/${name}`}>
-                <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
-              </Link>
+        : pokefilter ?
+            types.map(type => (
+              type.type.name === match.params.type && 
+              <div key={id} className="poke-card">
+                <div className="poke-img-container">
+                  <Link to={`/${name}`}>
+                    <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
+                  </Link>
+                </div>
+                <p><b>N.º {(id/100).toFixed(2).toString().replace('.','')}</b></p>
+                <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+                <div className="poke-type">
+                  <PokeTypes 
+                    types={types} classType='type' condition
+                  />
+                </div>
+              </div>
+            )) 
+          : <div key={id} className="poke-card">
+              <div className="poke-img-container">
+                <Link to={`/${name}`}>
+                  <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
+                </Link>
+              </div>
+              <p><b>N.º {(id/100).toFixed(2).toString().replace('.','')}</b></p>
+              <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+              <div className="poke-type">
+                <PokeTypes 
+                  types={types} classType='type' condition
+                />
+              </div>
             </div>
-            <p><b>N.º {(id/100).toFixed(2).toString().replace('.','')}</b></p>
-            <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
-            <div className="poke-type">
-              <PokeTypes 
-                types={types} classType='type'
-              />
-            </div>
-          </div>
       } 
     </>   
   )

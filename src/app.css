@@ -30,8 +30,23 @@
     }
 }
 
+.pokedex-container{
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 70% 50%, 60% 65%, 40% 65%, 30% 50%, 0 50%);
+    background-color: #1f1d1d;
+    margin-bottom: -4rem;
+    
+}
+
+.pokedex-height{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: -7rem;
+}
+
 .poke-ball-container{
-    margin: 0px auto -25px auto;
+    margin: -4.5rem auto -1rem;
     width: 40px;
     padding-top: 10px;
 }
@@ -44,14 +59,26 @@
     text-align: center;
     color: #b1191994;
     font-family: 'Sriracha', cursive;
-    margin-bottom: 10px;
     font-size: 3rem;
+}
+
+.type-container{
+    font-size: 1.5rem;
+    text-align: center;
+    color: white;
+    margin-top: -1rem;
+    font-family: 'Sriracha', cursive;
+}
+
+.type-container > span{
+    margin-left: 10px;
+    margin-bottom: 10rem;
 }
 
 .App{
     width: 70%;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 5rem 2rem;
     background-color: #fff;
 }
 
@@ -290,7 +317,10 @@
 }
 
 .App2{
-    padding-top: 1rem;
+    width: 70%;
+    margin: 0 auto;
+    padding: 2rem 2rem;
+    background-color: #fff;
 }
 
 .app-container{

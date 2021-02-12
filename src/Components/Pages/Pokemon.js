@@ -40,11 +40,6 @@ const Pokemon = ({match}) => {
   }, [])
 
   const beforePagination = (data) => {
-    // let prueba;
-    // if(pagination === 0){
-    //   prueba = 898;
-    //   setPagination(prueba)
-    // }
     setContador(data - 1)
   }
 
@@ -94,7 +89,7 @@ const Pokemon = ({match}) => {
 
           const abilitiyUrl = (data) => {
             Axios.get(data[0].ability.url)
-              .then(result => { /*console.info(result.data)*/
+              .then(result => { 
                 if(result.data.effect_entries[0].language.name === 'en'){
                   setDataUrls(result.data.effect_entries[0].effect)
                 } else{
@@ -188,7 +183,6 @@ const Pokemon = ({match}) => {
                         <i className="fas fa-arrow-circle-left arrow"></i>
                         <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
                         {contador === 0 ? <p className="pokemon">{pagination[(id-2)].name}</p> : <p className="pokemon">{pagination[(contador-2)].name}</p>}
-                        {/* {nextPokemon ? <NextPokemon/> : null} */}
                       </div>   
                     </Link>
                   </div>
@@ -202,7 +196,7 @@ const Pokemon = ({match}) => {
                     </Link>         
                   </div>
                 </div>
-                <div className="App App2">
+                <div className="App2">
                   <div className="title-container">
                     <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2> 
                     <p>N.º {(id/100).toFixed(2).toString().replace('.','')}</p>
@@ -263,9 +257,6 @@ const Pokemon = ({match}) => {
                   <div>  
                     <PokeEvolution
                       url={species.url}
-                      // pagination={pagination[(contador)].name}
-                      // match={match}
-                      // name={species.name}
                     />
                   </div>
                   <div  className="poke-button-container">

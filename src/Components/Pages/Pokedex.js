@@ -1,14 +1,15 @@
 import React from 'react';
 import Pokemones from './Pokemones';
 import Loading from './Loading';
-import pokeball from './pokebola.svg'
+import pokeball from './pokebola.png'
 import PokedexData from '../Hooks/PokedexData';
 
 
-const Pokedex = () => {
+const Pokedex = ({match}) => {
 
   const {loading, pokemonData} = PokedexData();
-  
+
+  console.info(match)
 
   return (
     <>
@@ -16,11 +17,13 @@ const Pokedex = () => {
         ? <Loading/> 
         : <>
             <div className="pokemon-container">
-              <div>
-                <div className="poke-ball-container">
-                  <img className="poke-ball" src={pokeball} alt='poke-ball'/>
+              <div className="pokedex-container">
+                <div className="pokedex-height">
+                  <div className="poke-ball-container">
+                    <img className="poke-ball" src={pokeball} alt='poke-ball'/>
+                  </div>
+                  <h1 className="title">Pokédex</h1>
                 </div>
-                <h1 className="title">Pokédex</h1>
               </div>
               <div className="App">
                 <div className="poke-container">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-function TypesPokemon(array, classType, pokeType, number) {
+function TypesPokemon(array, classType, pokeType, number, condition) {
 
   const pokemonTypes = () => {
     return array.map((arr, index) => {
@@ -71,11 +71,15 @@ function TypesPokemon(array, classType, pokeType, number) {
         default:
           break;
       }
-      return <div className={pokeType} key={index}>
-        <Link to={`/type/${menu}`} className="page">
-          <p className={`${classType} ${menu}`}>{name}</p>
-        </Link>
-      </div>
+      return (
+        condition 
+        ? <p key={index} className={`${classType} ${menu}`}>{name}</p>
+        : <div className={pokeType} key={index}>
+            <Link to={`/type/${menu}`} className="page" key={index}>
+              <p className={`${classType} ${menu}`}>{name}</p>
+            </Link>
+          </div>
+      )
     })
   }
   return {pokemonTypes}
