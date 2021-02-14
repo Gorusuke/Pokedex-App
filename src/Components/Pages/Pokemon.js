@@ -246,9 +246,9 @@ const Pokemon = ({match}) => {
                       <h3>Weakness</h3>
                       {types.map((type, i) => 
                         <PokeDamage
-                        key={i}
-                        url={type.type.url}
-                        classType='type3 type2'
+                          key={i}
+                          url={type.type.url}
+                          classType='type3 type2'
                         />
                         )}
                     </div>

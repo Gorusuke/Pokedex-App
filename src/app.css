@@ -643,6 +643,11 @@
     justify-content: flex-end;
 }
 
+.button-container{
+    text-align: center;
+    margin-bottom: -3rem;
+}
+
 .poke-button{
     color: #373737;
     padding: .5rem .8rem;
@@ -661,4 +666,10 @@
     background-color: #373737;
     color: #fff;
     border: 2px solid #373737;
+}
+
+
+
+.poke-button:focus{
+    outline: none;
 }

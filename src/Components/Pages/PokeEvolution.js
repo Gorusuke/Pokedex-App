@@ -9,11 +9,12 @@ const PokeEvolution = ({url}) => {
   const [evolutionData, setEvolutionData] = useState([]);
 
   useEffect(() => {
-    const evolution = async () => {
-      const response = await Axios.get(url)
-        .then(result => result.data.evolution_chain.url);
-      
-      await pokeEvolution(response);
+    const evolution = () => {
+      Axios.get(url)
+        .then(result => pokeEvolution(result.data.evolution_chain.url));
+      // console.info(response)
+
+      // pokeEvolution(response.data.evolution_chain.url);
     }
     evolution();
     // eslint-disable-next-line
