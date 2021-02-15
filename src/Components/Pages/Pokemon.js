@@ -18,8 +18,6 @@ const Pokemon = ({match}) => {
   const [dataUrls, setDataUrls] = useState([]);
   const [genderData, setGenderData] = useState([]);
   const [pagination, setPagination] = useState([]);
-  const [contador, setContador] = useState(0);
-  // const [nextPokemon, setNextPokemon] = useState([])
 
   const infoAbility = (data) => {
     setPokeInfoAbility(true);
@@ -38,14 +36,6 @@ const Pokemon = ({match}) => {
     API();
     // eslint-disable-next-line
   }, [])
-
-  const beforePagination = (data) => {
-    setContador(data - 1)
-  }
-
-  const nextPagination = (data) => {
-    setContador(data + 1)
-  }
 
   return (
     <>  
@@ -177,20 +167,32 @@ const Pokemon = ({match}) => {
             return (
               <div key={id} className="pokemon-container">
                 <div className="arrow-containers">
-                  <div className="before" onClick={() => beforePagination(id)}>
-                    <Link to={pagination[(id-2)].name} className="page">
+                  <div className="before">
+                    <Link to={pagination[(id-2)] === undefined ? pagination[Number(initialUrl.slice(-3))-1].name : pagination[(id-2)].name} className="page">
                       <div className="arrow-directions">
                         <i className="fas fa-arrow-circle-left arrow"></i>
-                        <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
-                        {contador === 0 ? <p className="pokemon">{pagination[(id-2)].name}</p> : <p className="pokemon">{pagination[(contador-2)].name}</p>}
+                        {id === 1 
+                          ? <p className="number">N.º {Number(initialUrl.slice(-3))}</p>
+                          : <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
+                        }
+                        {id === 1 
+                          ? <p className="pokemon">{pagination[Number(initialUrl.slice(-3))-1].name}</p>
+                          : <p className="pokemon">{pagination[(id-2)].name}</p>
+                        }
                       </div>   
                     </Link>
                   </div>
-                  <div className="next" onClick={() => nextPagination(id)}>
-                    <Link to={pagination[id].name} className="page">
+                  <div className="next">
+                    <Link to={pagination[id] === undefined ? pagination[Number(initialUrl.slice(-3)) - Number(initialUrl.slice(-3))].name : pagination[(id)].name} className="page">
                       <div className="arrow-directions">
-                        <p className="number">N.º {((id+1)/100).toFixed(2).toString().replace('.','')}</p>
-                        {contador === 0 ? <p className="pokemon">{pagination[id].name}</p> : <p className="pokemon">{pagination[contador].name}</p>}
+                        {id === Number(initialUrl.slice(-3)) 
+                          ? <p className="number">N.º 00{Number(initialUrl.slice(-3) - Number(initialUrl.slice(-3) - 1))}</p> 
+                          : <p className="number">N.º {((id+1)/100).toFixed(2).toString().replace('.','')}</p>
+                        }
+                        {id === Number(initialUrl.slice(-3)) 
+                          ? <p className="pokemon">{pagination[Number(initialUrl.slice(-3)) - Number(initialUrl.slice(-3))].name}</p>
+                          : <p className="pokemon">{pagination[id].name}</p>
+                        }
                         <i className="fas fa-arrow-circle-right arrow"></i>
                       </div>
                     </Link>         

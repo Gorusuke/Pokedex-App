@@ -12,9 +12,6 @@ const PokeEvolution = ({url}) => {
     const evolution = () => {
       Axios.get(url)
         .then(result => pokeEvolution(result.data.evolution_chain.url));
-      // console.info(response)
-
-      // pokeEvolution(response.data.evolution_chain.url);
     }
     evolution();
     // eslint-disable-next-line

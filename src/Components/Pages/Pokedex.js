@@ -7,10 +7,10 @@ import PokedexData from '../Hooks/PokedexData';
 
 const Pokedex = () => {
 
-  const {loading, pokemonData} = PokedexData();
+  const {loading, pokemonData, initialUrl} = PokedexData();
 
   const [count, setCount] = useState(96);
-  const [firstPokemones, setFirstPokemones] = useState([])
+  const [firstPokemones, setFirstPokemones] = useState([]);
   const [limit, setLimit] = useState([]);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const Pokedex = () => {
                     </>    
                   )}
                 </div> 
-                {count <= 946
+                {count <= Number(initialUrl.slice(-3)) + 48 
                   ? 
                   <div className="button-container">
                     <button 

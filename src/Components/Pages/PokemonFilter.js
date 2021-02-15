@@ -12,8 +12,6 @@ const PokemonFilter = ({match}) => {
   // const [firstPokemones, setFirstPokemones] = useState([])
   // const [limit, setLimit] = useState([]);
 
-  // // const [limits, setLimits] = useState([]);
-
   // useEffect(() => {
   //   firstPokemons();
   // }, []);
@@ -61,6 +59,18 @@ const PokemonFilter = ({match}) => {
 
             <div className="App">
               <div className="poke-container">
+                {pokemonData.map(pokemon => (
+                  <Pokemones
+                    key={pokemon.id}
+                    id={pokemon.id}
+                    name ={pokemon.name}
+                    types ={pokemon.types}
+                    sprites={pokemon.sprites}
+                    match={match}
+                    pokefilter
+                  />
+                  // ))
+                ))}
               {/* {pokemonData.map((pokemon, i) => 
                 <>
                   {firstPokemones.map(first => (
@@ -103,6 +113,7 @@ const PokemonFilter = ({match}) => {
                   </div>
                   : <p>These are all the Pokemons</p>
                 } */}
+                
               </div>
             </div>  
           </div>  
