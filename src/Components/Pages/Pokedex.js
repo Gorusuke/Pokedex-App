@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import Pokemones from './Pokemones';
 import Loading from './Loading';
 import pokeball from './pokebola.png'
@@ -58,7 +58,8 @@ const Pokedex = () => {
               <div className="App">
                 <div className="poke-container">
                   {pokemonData.map((pokemon, i) => 
-                    <>
+                    pokemon === undefined ? <Fragment key={i}></Fragment> :
+                    <Fragment key={i}>
                       {firstPokemones.map(first => (
                         first === i &&
                         <Pokemones
@@ -82,7 +83,7 @@ const Pokedex = () => {
                             />   
                           ))
                       }
-                    </>    
+                    </Fragment>    
                   )}
                 </div> 
                 {count <= Number(initialUrl.slice(-3)) + 48 
@@ -93,7 +94,7 @@ const Pokedex = () => {
                       className="poke-button"
                     >More Pokemons</button>
                   </div>
-                  : <p>These are all the Pokemons</p>
+                  : <p className="text">These are all the Pokemons</p>
                 }
               </div>
             </div>

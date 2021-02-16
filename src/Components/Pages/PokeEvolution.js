@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Axios from 'axios';
 import PokedexData from '../Hooks/PokedexData';
 import Pokemones from './Pokemones';
@@ -33,6 +33,7 @@ const PokeEvolution = ({url}) => {
   }
 
   const {loading, pokemonData} = PokedexData();
+  // console.info(evolutionData)
 
   return (
     <div className="evolution-pokemon-container">
@@ -47,7 +48,8 @@ const PokeEvolution = ({url}) => {
               : <h2 className="pokemon-title">Evolutions</h2>
             }
             <div className="evolution-container">
-              {pokemonData.map(pokemon => 
+              {pokemonData.map((pokemon, i) =>
+                pokemon === undefined ? <Fragment key={i}></Fragment> : 
                 <Pokemones
                     key={pokemon.id}
                     id={pokemon.id}

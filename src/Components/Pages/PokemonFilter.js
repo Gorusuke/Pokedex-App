@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PokedexData from '../Hooks/PokedexData';
 import Loading from './Loading';
 import Pokemones from './Pokemones';
@@ -11,6 +11,7 @@ const PokemonFilter = ({match}) => {
   // const [count, setCount] = useState(96);
   // const [firstPokemones, setFirstPokemones] = useState([])
   // const [limit, setLimit] = useState([]);
+  // let number = 336
 
   // useEffect(() => {
   //   firstPokemons();
@@ -18,7 +19,7 @@ const PokemonFilter = ({match}) => {
 
   // const firstPokemons = () => {
   //   let countFirstPokemons = [];
-  //   for (let i = 0; i < 48; i++) {
+  //   for (let i = 0; i < number; i++) {
   //     let element = i;
   //     countFirstPokemons.push(element)
   //   }
@@ -59,7 +60,8 @@ const PokemonFilter = ({match}) => {
 
             <div className="App">
               <div className="poke-container">
-                {pokemonData.map(pokemon => (
+                {pokemonData.map((pokemon, i) => 
+                  pokemon === undefined ? <Fragment key={i}></Fragment> :
                   <Pokemones
                     key={pokemon.id}
                     id={pokemon.id}
@@ -70,11 +72,11 @@ const PokemonFilter = ({match}) => {
                     pokefilter
                   />
                   // ))
-                ))}
+                )}
               {/* {pokemonData.map((pokemon, i) => 
                 <>
-                  {firstPokemones.map(first => (
-                    first === i &&
+                  {firstPokemones.map(first => 
+                    first === ((pokemon.id - number) <= 0 ? pokemon.id : pokemon.id - number) &&
                     <Pokemones
                       key={pokemon.id}
                       id={pokemon.id}
@@ -84,10 +86,10 @@ const PokemonFilter = ({match}) => {
                       pokefilter
                       match={match}
                     />
-                  ))}
+                  )}
                   {loading 
                     ? <Loading/> 
-                    : limit.map(limi => (
+                    : limit.map(limi => 
                         limi === i &&
                         <Pokemones
                           key={pokemon.id}
@@ -98,12 +100,11 @@ const PokemonFilter = ({match}) => {
                           pokefilter
                           match={match}
                         />   
-                      ))
-                  }
+                  )}
                 </>    
-              )} */}
+              )}
                 
-                {/* {count <= 946
+                {count <= 946
                   ? 
                   <div className="button-container">
                     <button 

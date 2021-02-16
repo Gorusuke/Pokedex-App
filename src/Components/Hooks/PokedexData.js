@@ -8,7 +8,7 @@ const PokedexData = () => {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
-  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=189'
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=898'
 
 
   useEffect(() => {
@@ -28,9 +28,9 @@ const PokedexData = () => {
         let getAllPokemon = await Axios.get(pokemon.url)
         return getAllPokemon.data;
       } catch (error) {
-        return error;
+        return undefined;
+        // return error;
       }
-      
     }))
     setPokemonData(pokemones)
   }

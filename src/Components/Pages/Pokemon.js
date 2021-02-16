@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import PokedexData from '../Hooks/PokedexData';
@@ -41,7 +41,10 @@ const Pokemon = ({match}) => {
     <>  
       {loading 
         ? <Loading/>
-        : pokemonData.map(pokemon => {
+        : pokemonData.map((pokemon, index) => {
+          if(pokemon === undefined){
+            return <Fragment key={index}></Fragment>
+          } else {
           let id = pokemon.id;
           let name = pokemon.name;
           let types = pokemon.types;
@@ -167,36 +170,32 @@ const Pokemon = ({match}) => {
             return (
               <div key={id} className="pokemon-container">
                 <div className="arrow-containers">
-                  <div className="before">
-                    <Link to={pagination[(id-2)] === undefined ? pagination[Number(initialUrl.slice(-3))-1].name : pagination[(id-2)].name} className="page">
-                      <div className="arrow-directions">
-                        <i className="fas fa-arrow-circle-left arrow"></i>
-                        {id === 1 
-                          ? <p className="number">N.º {Number(initialUrl.slice(-3))}</p>
-                          : <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
-                        }
-                        {id === 1 
-                          ? <p className="pokemon">{pagination[Number(initialUrl.slice(-3))-1].name}</p>
-                          : <p className="pokemon">{pagination[(id-2)].name}</p>
-                        }
-                      </div>   
-                    </Link>
-                  </div>
-                  <div className="next">
-                    <Link to={pagination[id] === undefined ? pagination[Number(initialUrl.slice(-3)) - Number(initialUrl.slice(-3))].name : pagination[(id)].name} className="page">
-                      <div className="arrow-directions">
-                        {id === Number(initialUrl.slice(-3)) 
-                          ? <p className="number">N.º 00{Number(initialUrl.slice(-3) - Number(initialUrl.slice(-3) - 1))}</p> 
-                          : <p className="number">N.º {((id+1)/100).toFixed(2).toString().replace('.','')}</p>
-                        }
-                        {id === Number(initialUrl.slice(-3)) 
-                          ? <p className="pokemon">{pagination[Number(initialUrl.slice(-3)) - Number(initialUrl.slice(-3))].name}</p>
-                          : <p className="pokemon">{pagination[id].name}</p>
-                        }
-                        <i className="fas fa-arrow-circle-right arrow"></i>
-                      </div>
-                    </Link>         
-                  </div>
+                  <Link to={pagination[(id-2)] === undefined ? pagination[Number(initialUrl.slice(-3))-1].name : pagination[(id-2)].name} className="page link before">
+                    <div className="arrow-directions">
+                      <i className="fas fa-arrow-circle-left arrow"></i>
+                      {id === 1 
+                        ? <p className="number">N.º {Number(initialUrl.slice(-3))}</p>
+                        : <p className="number">N.º {((id-1)/100).toFixed(2).toString().replace('.','')}</p>
+                      }
+                      {id === 1 
+                        ? <p className="pokemon">{pagination[Number(initialUrl.slice(-3))-1].name}</p>
+                        : <p className="pokemon">{pagination[(id-2)].name}</p>
+                      }
+                    </div>
+                  </Link>
+                  <Link to={pagination[id] === undefined ? pagination[Number(initialUrl.slice(-3)) - Number(initialUrl.slice(-3))].name : pagination[(id)].name} className="page link next">
+                    <div className="arrow-directions">
+                      {id === Number(initialUrl.slice(-3)) 
+                        ? <p className="number">N.º 00{Number(initialUrl.slice(-3) - Number(initialUrl.slice(-3) - 1))}</p> 
+                        : <p className="number">N.º {((id+1)/100).toFixed(2).toString().replace('.','')}</p>
+                      }
+                      {id === Number(initialUrl.slice(-3)) 
+                        ? <p className="pokemon">{pagination[Number(initialUrl.slice(-3)) - Number(initialUrl.slice(-3))].name}</p>
+                        : <p className="pokemon">{pagination[id].name}</p>
+                      }
+                      <i className="fas fa-arrow-circle-right arrow"></i>
+                    </div>      
+                  </Link>         
                 </div>
                 <div className="App2">
                   <div className="title-container">
@@ -271,6 +270,7 @@ const Pokemon = ({match}) => {
             )
           } 
           return null;
+        }
         })
       }
     </>

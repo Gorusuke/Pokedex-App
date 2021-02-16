@@ -298,6 +298,10 @@
     cursor: pointer;
 }
 
+.link:hover{
+    background-color: rgb(238, 96, 96);
+}
+
 .title-container{
     display: flex;
     justify-content: center;
@@ -668,8 +672,14 @@
     border: 2px solid #373737;
 }
 
-
-
 .poke-button:focus{
     outline: none;
+}
+
+.text{
+    font-size: 1.25rem;
+    text-align: center;
+    font-family: 'Sriracha', cursive;
+    margin-top: 1.5rem;
+    margin-bottom: -3.5rem;
 }
