@@ -29,9 +29,9 @@ const Pokemon = ({match}) => {
   }
 
   useEffect(() => {
-    const API = async () => {
-      const response = await Axios.get(initialUrl)
-      setPagination(response.data.results)
+    const API = () => {
+      Axios.get(initialUrl)
+      .then(response => setPagination(response.data.results))
     }
     API();
     // eslint-disable-next-line
@@ -58,11 +58,13 @@ const Pokemon = ({match}) => {
           const text = (url) => {
             Axios.get(url)
               .then(result => {
-                if(result.data.flavor_text_entries[1].language.name === 'en'){
-                  setPokeData(result.data.flavor_text_entries[1].flavor_text)
-                } else {
-                  setPokeData(result.data.flavor_text_entries[3].flavor_text)
-                }
+                const res = result.data.flavor_text_entries.filter(response => response.language.name === 'en')
+                setPokeData(res[0].flavor_text)
+                // if(result.data.flavor_text_entries[1].language.name === 'en'){
+                //   setPokeData(result.data.flavor_text_entries[1].flavor_text)
+                // } else {
+                //   setPokeData(result.data.flavor_text_entries[3].flavor_text)
+                // }
               })
             
             return <p className="poke-text">{pokeData.toString().replace('', ' ')}</p>;

@@ -9,27 +9,29 @@ const PokeEvolution = ({url}) => {
   const [evolutionData, setEvolutionData] = useState([]);
 
   useEffect(() => {
-    const evolution = () => {
-      Axios.get(url)
+    const evolution = (data) => {
+      Axios.get(data)
         .then(result => pokeEvolution(result.data.evolution_chain.url));
     }
-    evolution();
+    evolution(url);
     // eslint-disable-next-line
   }, [])
   
-  const pokeEvolution = async (url) => {
-    const result = await Axios.get(url)
-    let agua = [];
-    if(result.data.chain.species.name){
-      agua.push(result.data.chain.species.name)
-    } 
-    if (result.data.chain.evolves_to.length !== 0){
-      agua.push(result.data.chain.evolves_to[0].species.name)
-      if(result.data.chain.evolves_to[0].evolves_to.length !== 0){
-        agua.push(result.data.chain.evolves_to[0].evolves_to[0].species.name)
-      }
-    }
-    setEvolutionData(agua)
+  const pokeEvolution = (url) => {
+    Axios.get(url)
+      .then(result => {
+        let agua = [];
+        if(result.data.chain.species.name){
+          agua.push(result.data.chain.species.name)
+        } 
+        if (result.data.chain.evolves_to.length !== 0){
+          agua.push(result.data.chain.evolves_to[0].species.name)
+          if(result.data.chain.evolves_to[0].evolves_to.length !== 0){
+            agua.push(result.data.chain.evolves_to[0].evolves_to[0].species.name)
+          }
+        }
+        setEvolutionData(agua)
+      })
   }
 
   const {loading, pokemonData} = PokedexData();
