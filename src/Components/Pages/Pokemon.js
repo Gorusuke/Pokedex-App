@@ -60,11 +60,6 @@ const Pokemon = ({match}) => {
               .then(result => {
                 const res = result.data.flavor_text_entries.filter(response => response.language.name === 'en')
                 setPokeData(res[0].flavor_text)
-                // if(result.data.flavor_text_entries[1].language.name === 'en'){
-                //   setPokeData(result.data.flavor_text_entries[1].flavor_text)
-                // } else {
-                //   setPokeData(result.data.flavor_text_entries[3].flavor_text)
-                // }
               })
             
             return <p className="poke-text">{pokeData.toString().replace('', ' ')}</p>;
@@ -161,6 +156,9 @@ const Pokemon = ({match}) => {
                     <li></li>
                     <li></li>
                     <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
                   </ul>
                   <span>{stat.stat.name}</span>
                 </li>
@@ -171,6 +169,11 @@ const Pokemon = ({match}) => {
           if(pokemon.name === match.params.name){
             return (
               <div key={id} className="pokemon-container">
+                <div className="top-container">
+                  <div className="pokemon-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png" alt="pokemon"/>
+                  </div>
+                </div>
                 <div className="arrow-containers">
                   <Link to={pagination[(id-2)] === undefined ? pagination[Number(initialUrl.slice(-3))-1].name : pagination[(id-2)].name} className="page link before">
                     <div className="arrow-directions">
@@ -252,6 +255,7 @@ const Pokemon = ({match}) => {
                           key={i}
                           url={type.type.url}
                           classType='type3 type2'
+                          weakness
                         />
                         )}
                     </div>

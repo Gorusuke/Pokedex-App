@@ -20,17 +20,17 @@ const PokeEvolution = ({url}) => {
   const pokeEvolution = (url) => {
     Axios.get(url)
       .then(result => {
-        let agua = [];
+        let species = [];
         if(result.data.chain.species.name){
-          agua.push(result.data.chain.species.name)
+          species.push(result.data.chain.species.name)
         } 
         if (result.data.chain.evolves_to.length !== 0){
-          agua.push(result.data.chain.evolves_to[0].species.name)
+          species.push(result.data.chain.evolves_to[0].species.name)
           if(result.data.chain.evolves_to[0].evolves_to.length !== 0){
-            agua.push(result.data.chain.evolves_to[0].evolves_to[0].species.name)
+            species.push(result.data.chain.evolves_to[0].evolves_to[0].species.name)
           }
         }
-        setEvolutionData(agua)
+        setEvolutionData(species)
       })
   }
 

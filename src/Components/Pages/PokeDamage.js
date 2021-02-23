@@ -3,7 +3,7 @@ import Axios from "axios";
 import TypesPokemon from '../Hooks/TypesPokemon'
 
 
-const PokeDamage = ({url, classType}) => {
+const PokeDamage = ({url, classType, weakness}) => {
     
   const [damages, setDamages] = useState([]);
   
@@ -16,7 +16,7 @@ const PokeDamage = ({url, classType}) => {
     // eslint-disable-next-line
   }, [])
 
-  const {pokemonTypes} = TypesPokemon(damages, classType, 'poke-type3', 0);
+  const {pokemonTypes} = TypesPokemon(damages, classType, 'poke-type3', 0, weakness);
 
   return (
     <>
