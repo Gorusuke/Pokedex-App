@@ -53,7 +53,7 @@ const PokeEvolution = ({url}) => {
               {pokemonData.map((pokemon, i) =>
                 pokemon === undefined ? <Fragment key={i}></Fragment> : 
                 <Pokemones
-                    key={pokemon.id}
+                    key={i}
                     id={pokemon.id}
                     name ={pokemon.name}
                     types ={pokemon.types}

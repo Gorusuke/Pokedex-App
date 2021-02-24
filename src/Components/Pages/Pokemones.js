@@ -5,15 +5,15 @@ import PokeTypes from './PokeTypes';
 
 
 
-const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, match}) => {
+const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, match, pokemonWeakness, weak}) => {
 
- 
+
   return ( 
     <>
       {help
-        ? evolutions.map(evolution => (
+        ? evolutions.map((evolution, i) => (
           name === evolution &&
-           <div key={id} className="pokemon-card">
+           <div key={i} className="pokemon-card">
               <div className="pokemon-img-container">
                 <Link to={`/${name}`}>
                   <img className="pokemon-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
@@ -39,10 +39,10 @@ const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, matc
               </div>
             </div> 
           ))
-        : pokefilter ?
-            types.map((type) => 
-              type.type.name === match.params.type && 
-              <div key={id} className="poke-card">
+        : pokemonWeakness /*? <h1>Hola</h1>*/
+          ? types.map((type, i) => 
+              type.type.name === weak &&
+                <div key={i} className="poke-card">
                   <div className="poke-img-container">
                     <Link to={`/${name}`}>
                       <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
@@ -55,9 +55,26 @@ const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, matc
                       types={types} classType='type' condition
                       />
                   </div>
-              </div>
+                </div>)
+          : pokefilter 
+            ? types.map((type) => 
+                type.type.name === match.params.type && 
+                <div key={id} className="poke-card">
+                    <div className="poke-img-container">
+                      <Link to={`/${name}`}>
+                        <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
+                      </Link>
+                    </div>
+                    <p><b>N.º {(id/100).toFixed(2).toString().replace('.','')}</b></p>
+                    <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+                    <div className="poke-type">
+                      <PokeTypes 
+                        types={types} classType='type' condition
+                        />
+                    </div>
+                </div>
             )
-          : <div key={id} className="poke-card">
+            : <div key={id} className="poke-card">
               <div className="poke-img-container">
                 <Link to={`/${name}`}>
                   <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>

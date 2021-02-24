@@ -3,43 +3,32 @@ import PokedexData from '../Hooks/PokedexData';
 import Loading from './Loading';
 import Pokemones from './Pokemones';
 import pokeball from './pokebola.png';
+import Axios from 'axios';
 
 const PokemonWeakness = ({match}) => {
 
   const {loading, pokemonData} = PokedexData();
+  const [pokeWeakness, setPokeWeakness] = useState([])
   
-  // const [count, setCount] = useState(96);
-  // const [firstPokemones, setFirstPokemones] = useState([])
-  // const [limit, setLimit] = useState([]);
-  // let number = 336
 
-  // useEffect(() => {
-  //   firstPokemons();
-  // }, []);
+  useEffect(() => {
+    const getUrl = () => {
+      Axios.get('https://pokeapi.co/api/v2/type/')
+        .then((result) => {
+          result.data.results.map(response => response.name === match.params.type && typeUrl(response.url))
+          // console.info(urlType)
+          // typeUrl(urlType[0].url)
+        })
+    }
+    getUrl();
+    // eslint-disable-next-line
+  }, [])
 
-  // const firstPokemons = () => {
-  //   let countFirstPokemons = [];
-  //   for (let i = 0; i < number; i++) {
-  //     let element = i;
-  //     countFirstPokemons.push(element)
-  //   }
-  //   setFirstPokemones(countFirstPokemons)
-  // }
-
-  // const morePokemons = () => {
-  //   setCount(count + 48)
-  //   NextPokemonsCount();
-  // }
-
-  // const NextPokemonsCount = () => {
-  //   let counting = [];
-  //   for (let i = 48; i < count; i++) {
-  //     let element = i;
-  //     counting.push(element)
-  //   }
-  //   setLimit(counting)
-  // }
-  
+  const typeUrl = (data) => {
+    Axios.get(data)
+     .then(result => setPokeWeakness(result.data.damage_relations.double_damage_to))
+     // result.data.damage_relations.double_damage_to.map(response => setPokeWeakness(response.name))
+  }
   
   return (
     <>
@@ -62,16 +51,18 @@ const PokemonWeakness = ({match}) => {
               <div className="poke-container">
                 {pokemonData.map((pokemon, i) => 
                   pokemon === undefined ? <Fragment key={i}></Fragment> :
-                  <Pokemones
-                    key={pokemon.id}
-                    id={pokemon.id}
-                    name ={pokemon.name}
-                    types ={pokemon.types}
-                    sprites={pokemon.sprites}
-                    match={match}
-                    pokefilter
-                  />
-                  // ))
+                  pokeWeakness.map((weak, i) => 
+                    <Pokemones
+                      key={i}
+                      id={pokemon.id}
+                      name ={pokemon.name}
+                      types ={pokemon.types}
+                      sprites={pokemon.sprites}
+                      match={match}
+                      pokemonWeakness
+                      weak={weak.name}
+                    />
+                  )
                 )}          
               </div>
             </div>  

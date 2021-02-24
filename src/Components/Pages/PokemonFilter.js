@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment} from 'react';
 import PokedexData from '../Hooks/PokedexData';
 import Loading from './Loading';
 import Pokemones from './Pokemones';
