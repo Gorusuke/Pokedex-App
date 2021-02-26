@@ -137,13 +137,56 @@ const Pokemon = ({match}) => {
           const pokeStats = () => {
             return stats.map((stat, i) => {
               let barra = 15;
-              const number = Math.round((stat.base_stat / barra))
-              const avance = number * 24;
+              const number = Math.floor((stat.base_stat / barra))
+              let avance;
+              switch (number) {
+                case 1:
+                  avance = number * 93.33;
+                  break;
+                case 2:
+                  avance = number * 43.33;
+                  break;
+                case 3:
+                  avance = number * 26.66;
+                  break;
+                case 4:
+                  avance = number * 18.33;
+                  break;
+                case 5:
+                  avance = number * 13.33;
+                  break;
+                case 6:
+                  avance = number * 10;
+                  break;
+                case 7:
+                  avance = number * 7.61;
+                  break;
+                case 8:
+                  avance = number * 5.83;
+                  break;
+                case 9:
+                  avance = number * 4.44;
+                  break;
+                case 10:
+                  avance = number * 3.33;
+                  break;
+                case 11:
+                  avance = number * 2.42;
+                  break;
+                case 12:
+                  avance = number * 1.66;
+                  break;
+                case 13:
+                  avance = number * 1.02;
+                  break;  
+                default:
+                  break;
+              }
 
               return (
                 <li key={i}>
                   <ul className="gauge">
-                    <li className="percentage" style={{paddingTop: `${avance}%`}}></li>
+                    <li className="percentage" style={{top: `${avance}%`}}></li>
                     <li></li>
                     <li></li>
                     <li></li>

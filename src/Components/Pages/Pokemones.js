@@ -40,19 +40,18 @@ const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, matc
               </div>
             </div> 
           ))
-        : pokemonWeakness /*? <h1>Hola</h1>*/
-          ? types.map((type, i) => {
-            return type.type.name === weak &&
-            // console.info(weak.split(' '))
-            // types.find(agua => agua.type.name === weak) && console.info('hola')
-            <PokeCard
-                key={i}
-                id={id}
-                name={name}
-                sprites={sprites}
-                types={types}
-            />
-          })
+        : pokemonWeakness
+          ? types.map(type => 
+            type.type.name === weak
+            &&  <PokeCard
+                  key={id}
+                  id={id}
+                  name={name}
+                  sprites={sprites}
+                  types={types}
+                />
+            )
+          //          
                 // <div key={i} className="poke-card">
                 //   <div className="poke-img-container">
                 //     <Link to={`/${name}`}>
@@ -67,6 +66,7 @@ const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, matc
                 //       />
                 //   </div>
                 // </div>)
+
           : pokefilter 
             ? types.map((type, i) => 
               type.type.name === match.params.type && 

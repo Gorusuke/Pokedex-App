@@ -506,10 +506,10 @@
 
 .gauge li.percentage{
     background: #30a7d7;
-    position: absolute;
-    bottom: 0;
-    padding-top: 0%;
     border: none;
+    position: absolute;
+    height: 120%;
+    top: 100%;
     z-index: 1;
     animation: animacion 1s ease-in;
 }
