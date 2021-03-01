@@ -76,7 +76,7 @@
 }
 
 .App{
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     padding: 5rem 2rem;
     background-color: #fff;
@@ -84,7 +84,8 @@
 
 .poke-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 23.634%);
+    grid-template-columns: repeat(auto-fit, 23.5%);
+    justify-content: center;
     column-gap: 1rem;
     row-gap: 2.5rem;
 }
@@ -335,7 +336,7 @@
 }
 
 .App2{
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     padding: 2rem 2rem;
     background-color: #fff;
@@ -697,3 +698,101 @@
     margin-top: 1.5rem;
     margin-bottom: -3.5rem;
 }
+
+@media(max-width: 1440px){
+
+    .poke-container{
+        grid-template-columns: repeat(auto-fit, 22.8%);
+    }
+
+    .poke-card > p {
+        font-size: .8rem;
+    }
+
+    .poke-card > h3 {
+        font-size: 1.25rem;
+        margin-top: -.5rem;
+    }
+        
+    .type{
+        margin-right: 5px;
+        padding: 0px 12px;
+    }
+}
+
+
+@media(max-width: 1024px){
+
+    .poke-container{
+        grid-template-columns: repeat(auto-fit, 30.6%);
+    }
+}
+
+@media(max-width: 768px){
+    
+    .poke-ball-container{
+        margin: -4.5rem auto -.4rem;
+    }
+    
+    .poke-ball{
+        width: 100%;
+    }
+    
+    .title{
+        font-size: 2rem;
+    }
+
+    .App{
+        width: 70%;
+    }
+
+    .poke-container{
+        grid-template-columns: repeat(auto-fit, 46%);
+    }
+
+    .poke-card > h3 {
+        font-size: 1rem;
+    }
+        
+    .type{
+        font-size: 10px;
+        margin-right: 5px;
+        padding: 0px 10px;
+    }
+}
+
+@media(max-width: 425px){
+    .pokedex-height{
+        height: 100px;
+        margin-bottom: -6rem;
+    }
+    
+    .poke-ball-container{
+        margin: -3rem auto -.4rem;
+        width: 20px;
+        padding-top: 20px;
+    }
+    
+    .poke-ball{
+        width: 100%;
+    }
+    
+    .title{
+        font-size: 1rem;
+    }
+
+    .poke-container{
+        grid-template-columns: repeat(auto-fit, 45%);
+    }
+
+    .poke-card > h3 {
+        font-size: .8rem;
+    }
+            
+    .type{
+        font-size: 8px;
+        margin-right: 3px;
+        padding: 0px 6px;
+    }
+}
+

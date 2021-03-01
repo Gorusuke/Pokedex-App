@@ -8,6 +8,15 @@ import PokeCard from './PokeCard';
 
 const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, match, pokemonWeakness, weak}) => {
 
+  const pokeWeaknessdata = () => {
+    return types.map(type => 
+      type.type.name === weak && 
+      <PokeCard
+        key={id} id={id} name={name}
+        sprites={sprites} types={types}
+      />
+    )
+  }
 
   return ( 
     <>
@@ -41,32 +50,7 @@ const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, matc
             </div> 
           ))
         : pokemonWeakness
-          ? types.map(type => 
-            type.type.name === weak
-            &&  <PokeCard
-                  key={id}
-                  id={id}
-                  name={name}
-                  sprites={sprites}
-                  types={types}
-                />
-            )
-          //          
-                // <div key={i} className="poke-card">
-                //   <div className="poke-img-container">
-                //     <Link to={`/${name}`}>
-                //       <img className="poke-img" src={sprites.other['official-artwork'].front_default} alt={name}/>
-                //     </Link>
-                //   </div>
-                //   <p><b>N.º {(id/100).toFixed(2).toString().replace('.','')}</b></p>
-                //   <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
-                //   <div className="poke-type">
-                //     <PokeTypes 
-                //       types={types} classType='type' condition
-                //       />
-                //   </div>
-                // </div>)
-
+          ? pokeWeaknessdata()
           : pokefilter 
             ? types.map((type, i) => 
               type.type.name === match.params.type && 
