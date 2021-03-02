@@ -31,10 +31,15 @@ const Pokemones = ({id, name, types, sprites, evolutions, help, pokefilter, matc
                 {evolutions.length === 1
                   ? null
                   : evolutions.length === 2 
-                    ? <i className="fas fa-chevron-right center"></i>
+                    ? <>
+                        <i className="fas fa-chevron-right center"></i>
+                        <i class="fas fa-chevron-down down"></i>
+                      </>
                     : <>
                         <i className="fas fa-chevron-right right"></i>
                         <i className="fas fa-chevron-right left"></i>
+                        <i class="fas fa-chevron-down down1" ></i>
+                        <i class="fas fa-chevron-down down2" ></i>
                       </>
                 }
               </div>

@@ -279,7 +279,7 @@ const Pokemon = ({match}) => {
                             </div>
                           </div>
                       }
-                      <p className="type-text">Type</p>
+                      <h3 className="type-text">Type</h3>
                       <div className="poke-type2">
                         <PokeTypes types={types} classType='type2'/>
                       </div>    
